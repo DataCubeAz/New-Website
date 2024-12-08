@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f0f0f0;
+        }
+        .login-container {
+            width: 300px;
+            margin: 10% auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .login-container h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        input[type=text], input[type=password] {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Please Log In</h2>
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button onclick="checkCredentials()">Login</button>
+        <div class="error" id="error"></div>
+    </div>
+
+    <script>
+        // Hard-coded credentials (for demonstration only!)
+        const users = [
+            { "username": "admin", "password": "secret" },
+            { "username": "user", "password": "pass" }
+        ];
+
+        function checkCredentials() {
+            const enteredUsername = document.getElementById('username').value.trim();
+            const enteredPassword = document.getElementById('password').value.trim();
+            const errorDiv = document.getElementById('error');
+
+            // Clear previous error message
+            errorDiv.textContent = "";
+
+            // Check if inputs are empty
+            if (!enteredUsername || !enteredPassword) {
+                errorDiv.textContent = "Please enter both username and password.";
+                return;
+            }
+
+            // Find user with matching credentials
+            const user = users.find(u => u.username === enteredUsername && u.password === enteredPassword);
+
+            if (user) {
+                // Redirect if correct
+                window.location.href = "https://glib-sunspot-f28.notion.site/Education-Video-Library-155eaaa4d20f80678b5ee54bff869532?pvs=4";
+            } else {
+                errorDiv.textContent = "Invalid username or password.";
+            }
+        }
+
+        // Optional: Allow form submission with Enter key
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginContainer = document.querySelector('.login-container');
+            loginContainer.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    checkCredentials();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
